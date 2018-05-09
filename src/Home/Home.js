@@ -4,7 +4,12 @@ import gql from 'graphql-tag';
 
 const query = gql`
   {
-    hello
+    hello {
+      email
+      id
+      onboardingComplete
+      displayName
+    }
   }
 `;
 
@@ -23,7 +28,7 @@ class Home extends Component {
                   if (loading) return <h4>Spinning...</h4>
                   if (error) return <h4>Error...</h4>
 
-                  return <h4>Logged In: {data.hello}</h4>
+                  return <h4>Logged In: {Object.keys(data.hello).map(key => data.hello[key])}</h4>
                 }}
               </Query>
             )
